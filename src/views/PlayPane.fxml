@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<VBox fx:id="root" minWidth="170.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" styleClass="MainBox" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PlayPaneCtrl">
+   <children>
+      <HBox fx:id="hboxFichier" styleClass="SubBox">
+         <children>
+            <Label minWidth="50.0" text="Pièce :" />
+            <Label fx:id="lblFichier" text="Label" wrapText="true" />
+         </children>
+      </HBox>
+      <VBox fx:id="vboxVolume" styleClass="SubBox">
+         <children>
+            <HBox fx:id="hboxVolume" styleClass="SubBox">
+               <children>
+                  <Label fx:id="lblVolume" text="Volume" />
+                  <Text fx:id="txtVolume" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children>
+            </HBox>
+            <Slider fx:id="sldrVolume" blockIncrement="0.1" max="1.0" min="0.2" value="0.6" />
+         </children>
+      </VBox>
+      <VBox fx:id="vboxLecture" styleClass="SubBox">
+         <children>
+            <HBox fx:id="hboxLecture" styleClass="SubBox">
+               <children>
+                  <Label fx:id="lblLecture" text="Lecture" />
+                  <Text fx:id="txtLecture" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </children>
+            </HBox>
+            <HBox fx:id="hboxProgres" alignment="TOP_CENTER">
+               <children>
+                  <Button fx:id="btnBackward" minWidth="25.0" mnemonicParsing="false" text="&lt;" />
+                  <ProgressBar fx:id="progLecture" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="150.0" progress="0.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnForward" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="&gt;" />
+               </children>
+            </HBox>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnJouer" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Jouer" />
+                  <Button fx:id="btnPause" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Pause" GridPane.columnIndex="1" />
+                  <Button fx:id="btnArret" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Stop" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <TextArea fx:id="areaMetadata" editable="false" focusTraversable="false" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+   </children>
+   <stylesheets>
+      <URL value="@main.css" />
+      <URL value="@PlayPane.css" />
+   </stylesheets>
+</VBox>
