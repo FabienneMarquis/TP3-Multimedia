@@ -108,8 +108,7 @@ public class PlayPaneCtrl extends WindowApp {
     private int lastTotal = -1;
 
     /**
-     * Fait un bind puis démarre la pièce. 
-     * @see bindSong
+     * Fait un bind puis démarre la pièce.
      * 
      * @param newMedia
      * @param songName
