@@ -8,6 +8,7 @@
 #areaMetadata .content
 {
 	-fx-background-color : #9f47c5;
+	-fx-border-color: #6f00a9;
 }
 
 #hboxProgres
@@ -26,30 +27,25 @@
 	-fx-indeterminate-bar-escape: true;
 	-fx-indeterminate-bar-flip: true;
 	-fx-indeterminate-bar-animation-time: 2;
+
 }
-.progress-bar > .bar {
-	-fx-background-color: linear-gradient(to bottom, derive(-fx-accent, -7%), derive(-fx-accent, 0%), derive(-fx-accent, -3%), derive(-fx-accent, -9%) );
+.progress-bar  .bar {
+	-fx-background-color: #5fff68;
 	-fx-background-insets: 3 3 4 3;
 	-fx-background-radius: 2;
 	-fx-padding: 0.75em;
+	-fx-base: #5fff68;
 }
-.progress-bar:indeterminate > .bar {
-	-fx-background-color: linear-gradient(to left, transparent, -fx-accent);
-}
+
 .progress-bar > .track {
-	-fx-background-color:
-			-fx-shadow-highlight-color,
-			linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
-			linear-gradient(to bottom,
-			derive(-fx-control-inner-background, -7%),
-			derive(-fx-control-inner-background, 0%),
-			derive(-fx-control-inner-background, -3%),
-			derive(-fx-control-inner-background, -9%)
-			);
 	-fx-control-inner-background: #e6b4ee;
 	-fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
 	-fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
+	-fx-border-color: #6f00a9;
 }
 .slider{
 	-fx-conntrol-inner-background : #9f47c5;
+}
+.button{
+	-fx-border-color: #6f00a9;
 }

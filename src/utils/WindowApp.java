@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -55,7 +56,8 @@ public abstract class WindowApp extends Application {
     		event.consume();
     	});
     	root.setStyle("-fx-padding: 20px");
-    	
+		Image icone = new Image("/ressources/catpaw.png");
+		primaryStage.getIcons().add(icone);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(getTitle());

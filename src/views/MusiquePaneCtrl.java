@@ -43,6 +43,7 @@ public class MusiquePaneCtrl extends WindowApp {
 	private PlayPaneCtrl playPaneCtrl = null;
 	
     private Media media = null;
+	private String acdcBiB= "ACDC - Back In Black.mp3";
 
     private void initAnimation()
     {
@@ -117,7 +118,7 @@ public class MusiquePaneCtrl extends WindowApp {
     
     private void initPlayPane()
     {
-    	URL musique = getClass().getResource("/ressources/popcorn.mp3");
+    	URL musique = getClass().getResource("/ressources/"+acdcBiB);
     	media = new Media(musique.toExternalForm());
     	
     	playPaneCtrl = (new PlayPaneCtrl()).loadView();
@@ -126,13 +127,13 @@ public class MusiquePaneCtrl extends WindowApp {
     	playPaneCtrl.config( 
     			newStatus->onPlayingStatusChange(newStatus), 
     			()->onEndOfMedia());
-    	playPaneCtrl.bindSong(media, "Popcorn");
+    	playPaneCtrl.bindSong(media, acdcBiB);
     	animationPaneCtrl.bindRate(playPaneCtrl.volumeProperty());
     }
     
     private void onEndOfMedia()
     {
-		if(checkRejouer.isSelected()) playPaneCtrl.bindAndPlay(media, "Popcorn"); 
+		if(checkRejouer.isSelected()) playPaneCtrl.bindAndPlay(media, acdcBiB);
     }
     
     private void onPlayingStatusChange(Status newStatus)
