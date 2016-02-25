@@ -38,7 +38,10 @@ public class MusiquePaneCtrl extends WindowApp {
 	@FXML
     private CheckBox checkRejouer;
 	
-	private AnimationPaneCtrl animationPaneCtrl = null;
+	private AnimationPaneCtrl animationPaneCtrl1 = null;
+	private AnimationPaneCtrl animationPaneCtrl2 = null;
+	private AnimationPaneCtrl animationPaneCtrl3 = null;
+	private AnimationPaneCtrl animationPaneCtrl4 = null;
 
 	private PlayPaneCtrl playPaneCtrl = null;
 	
@@ -47,8 +50,9 @@ public class MusiquePaneCtrl extends WindowApp {
 
     private void initAnimation()
     {
-    	animationPaneCtrl = (new AnimationPaneCtrl()).loadView();
-    	root.getChildren().add(animationPaneCtrl.getRoot());
+    	animationPaneCtrl1 = (new AnimationPaneCtrl()).loadView();
+		animationPaneCtrl2 = (new AnimationPaneCtrl()).loadView();
+		root.getChildren().addAll(animationPaneCtrl1.getRoot(),animationPaneCtrl2.getRoot());
     }
     
     private void initDragAndDrop()
@@ -69,7 +73,7 @@ public class MusiquePaneCtrl extends WindowApp {
 		        	else 
 		        	{
 		        		playPaneCtrl.bindSong(newMedia, f.getName());
-		        	};
+		        	}
 	        	}
 	        	catch(MediaException e)
 	        	{
@@ -128,18 +132,19 @@ public class MusiquePaneCtrl extends WindowApp {
     			newStatus->onPlayingStatusChange(newStatus), 
     			()->onEndOfMedia());
     	playPaneCtrl.bindSong(media, acdcBiB);
-    	animationPaneCtrl.bindRate(playPaneCtrl.volumeProperty());
+    	animationPaneCtrl1.bindRate(playPaneCtrl.volumeProperty());
+		animationPaneCtrl2.bindRate(playPaneCtrl.volumeProperty());
     }
     
     private void onEndOfMedia()
     {
-		if(checkRejouer.isSelected()) playPaneCtrl.bindAndPlay(media, acdcBiB);
+		if(checkRejouer.isSelected()) playPaneCtrl.bindAndPlay(media, "Popcorn");
     }
     
     private void onPlayingStatusChange(Status newStatus)
     {
-		if(newStatus == Status.PLAYING) animationPaneCtrl.play();
-		else animationPaneCtrl.pause();
+		if(newStatus == Status.PLAYING){ animationPaneCtrl1.play(); animationPaneCtrl2.play();}
+		else {animationPaneCtrl1.pause(); animationPaneCtrl2.pause();}
     }
 
     @Override

@@ -113,20 +113,18 @@ public class PlayPaneCtrl extends WindowApp {
     private String annee;
     private String album;
     private String piece;
+    private String pieceDefault;
     private String titreSong="";
 
-    public String getTitreSong() {
-        return titreSong;
-    }
+
 
     /**
      * Fait un bind puis démarre la pièce.
      *
      * @param newMedia
-     * @param songName
      */
-    public void bindAndPlay(Media newMedia, String songName) {
-        bindSong(newMedia, songName);
+    public void bindAndPlay(Media newMedia, String songDefault) {
+        bindSong(newMedia, songDefault);
         if (isBinded()) btnJouer.fire();
     }
 
@@ -150,10 +148,8 @@ public class PlayPaneCtrl extends WindowApp {
      *
      * @param newMedia La pièce à jouer.
      *                 Si null, on efface la pièce sans la remplacer.
-     * @param songName Le nom de la pièce qui doit apparaitre, si la pièce n'a pas de nom.
-     *                 Si null, le nom est inconnu.
      */
-    public void bindSong(Media newMedia, String songName) {
+    public void bindSong(Media newMedia, String songDefault) {
         if (newMedia == null) {
             bindNoSong();
             return;
@@ -161,8 +157,7 @@ public class PlayPaneCtrl extends WindowApp {
         boolean wasPlaying = mediaPlayer != null && mediaPlayer.getStatus() == Status.PLAYING;
         unbindMediaPlayer();
         vboxLecture.setDisable(false);
-        if (songName == null) songName = "Inconnu";
-        lblFichier.setText(songName);
+        pieceDefault = songDefault;
         bindMediaPlayer(newMedia);
         if (wasPlaying) Platform.runLater(() -> btnJouer.fire());
         else requestFocus(btnJouer);
@@ -193,10 +188,7 @@ public class PlayPaneCtrl extends WindowApp {
     }
 
     private void afficherMetadonnees() {
-        album =null;
-        artist=null;
-        piece=null;
-        annee=null;
+
         List<String> list = new ArrayList<String>();
         mediaPlayer.getMedia().getMetadata().forEach((key, o) -> {
             if (!key.startsWith("raw"))
@@ -211,7 +203,7 @@ public class PlayPaneCtrl extends WindowApp {
                 annee = o.toString();
             }
         });
-        changeTitreSong();
+
         list.sort(null);
         areaMetadata.clear();
         if (list.isEmpty())
@@ -222,20 +214,23 @@ public class PlayPaneCtrl extends WindowApp {
     }
 
     private void changeTitreSong(){
-
         if (artist!=null){
-            titreSong+="["+artist+"]";
+            titreSong+=artist;
         }
         if(annee!=null){
-            titreSong+=" - ["+annee+"]";
+            titreSong+=" - "+annee;
         }
         if(album!=null){
-            titreSong+=" - ["+album+"]";
+            titreSong+=" - "+album;
         }
-        if(piece!=null){
-            titreSong+=" - ["+piece+"]";
+        if(piece!=null && !piece.equals(album)){
+            titreSong+=" - "+piece;
+        }else if(piece==null){
+            titreSong+=" - "+pieceDefault;
         }
         System.out.println(titreSong);
+        if (titreSong == null) titreSong = "Inconnu";
+        lblFichier.setText(titreSong);
     }
 
 
@@ -276,6 +271,7 @@ public class PlayPaneCtrl extends WindowApp {
         mediaPlayer.setOnReady(() -> {
             afficherMetadonnees();
             initProgression();
+            changeTitreSong();
         });
 
         bindJouerPauseArret();
@@ -321,6 +317,10 @@ public class PlayPaneCtrl extends WindowApp {
         config(null, null);
         initActions();
         bindNoSong();
+        album =null;
+        artist=null;
+        piece=null;
+        annee=null;
     }
 
     private void initProgression() {
@@ -377,14 +377,14 @@ public class PlayPaneCtrl extends WindowApp {
                 new MenuItem("Bind Popcorn") {{
                     setOnAction(event -> {
                         URL musique = getClass().getResource("/ressources/popcorn.mp3");
-                        bindSong(new Media(musique.toExternalForm()), "Popcorn");
+                        bindSong(new Media(musique.toExternalForm()), "song");
                         Platform.runLater(() -> btnJouer.requestFocus());
                     });
                 }},
                 new MenuItem("Play Popcorn") {{
                     setOnAction(event -> {
                         URL musique = getClass().getResource("/ressources/popcorn.mp3");
-                        bindAndPlay(new Media(musique.toExternalForm()), "Popcorn");
+                        bindAndPlay(new Media(musique.toExternalForm()), "song");
                         Platform.runLater(() -> btnJouer.requestFocus());
                     });
                 }},
