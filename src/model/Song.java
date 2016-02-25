@@ -101,9 +101,9 @@ public class Song extends Observable {
                 if (key.equals("album")) {
                     setAlbum(metadata.get(key).toString());
                 } else if (key.equals("artist")) {
-                    setArtist(metadata.get(key).toString());
-                } else if (key.equals("title")) {
-                    setTitle(metadata.get(key).toString());
+                        setArtist(metadata.get(key).toString());
+                    } else if (key.equals("title")) {
+                        setTitle(metadata.get(key).toString());
                 } else if (key.equals("year")) {
                     setYear(metadata.get(key).toString());
                 } else if (key.equals("albumArtist")) {
