@@ -13,6 +13,7 @@
 
 <HBox fx:id="root" nodeOrientation="LEFT_TO_RIGHT" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MusiquePaneCtrl">
    <children>
+      <VBox fx:id="vboxLeft" prefHeight="200.0" prefWidth="100.0" />
       <VBox fx:id="controlPane" minWidth="170.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" styleClass="MainBox" HBox.hgrow="SOMETIMES">
          <children>
             <Label fx:id="lblMusique" text="MUSIQUE" underline="true">
@@ -24,6 +25,7 @@
             <CheckBox fx:id="checkRejouer" mnemonicParsing="false" text="Rejouer en boucle" />
          </children>
       </VBox>
+      <VBox fx:id="vBoxRigth" prefHeight="200.0" prefWidth="100.0" />
    </children>
    <stylesheets>
       <URL value="@main.css" />
