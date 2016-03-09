@@ -1,0 +1,51 @@
+package model;
+
+import utils.PathUtil;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * Created by 1494778 on 2016-03-09.
+ */
+public class Preference {
+    public String songFile = null;
+    public double stageWidth = -1;
+    public double stageHeight = -1;
+    private static final String FILE = ".preference";
+    private static final File file = null;
+
+    static {
+        try {
+            new File(PathUtil.getFullPath(FILE));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void stocker() {
+        if (file == null) return;
+        try {
+            Marshaller m = JAXBContext.newInstance(Preference.class).createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            m.marshal(this, file);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Preference charger() {
+        if (file==null || !file.exists()) return null;
+        try{
+            return (Preference) JAXBContext.newInstance(Preference.class).createUnmarshaller().unmarshal(file);
+        }catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+}

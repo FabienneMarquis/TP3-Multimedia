@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -91,7 +93,7 @@ public class AnimationPaneCtrl extends WindowApp {
     			new MenuItem("Pause"){{ setOnAction(event->{ pause(); }); }}
     	);
     }
-    
+
 	@Override
 	protected String getTitle() { return "TP3 - Animation Pane"; }
     

@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <VBox fx:id="root" minWidth="170.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" styleClass="MainBox" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PlayPaneCtrl">
    <children>
       <HBox fx:id="hboxFichier" styleClass="SubBox">
@@ -39,26 +38,101 @@
                   <Text fx:id="txtLecture" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
-            <HBox fx:id="hboxProgres" alignment="TOP_CENTER">
-               <children>
-                  <Button fx:id="btnBackward" minWidth="25.0" mnemonicParsing="false" text="&lt;" />
-                  <ProgressBar fx:id="progLecture" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="150.0" progress="0.0" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="btnForward" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="&gt;" />
-               </children>
-            </HBox>
+            <HBox fx:id="hboxProgres" alignment="TOP_CENTER" />
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnJouer" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Jouer" />
-                  <Button fx:id="btnPause" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Pause" GridPane.columnIndex="1" />
-                  <Button fx:id="btnArret" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Stop" GridPane.columnIndex="2" />
+                  <Button fx:id="btnBackward" minWidth="25.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/Gauche_icon-play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Reculer de 30 secondes" />
+                     </tooltip></Button>
+                  <Button fx:id="btnForward" minWidth="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" GridPane.columnIndex="4">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/Droit_icon-play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Avancer de 30 secondes" />
+                     </tooltip></Button>
+                  <ProgressBar fx:id="progLecture" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="75.0" progress="0.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                  <Button fx:id="btnArret" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/black_4_audio_stop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Arrêter la musique" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="btnPause" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/pause-circle-outline.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Pauser la musique" />
+                     </tooltip></Button>
+                  <Button fx:id="btnJouer" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/play-circle-outline.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Jouer la musique" />
+                     </tooltip></Button>
+                  <Button fx:id="btnretour" disable="true" minWidth="25.0" mnemonicParsing="false" GridPane.rowIndex="1">
+                     <tooltip>
+                        <Tooltip text="Reculer de 30 secondes" />
+                     </tooltip>
+                     <graphic>
+                        <ImageView disable="true" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/Gauche_audio_step_forward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnNext" disable="true" minWidth="25.0" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <tooltip>
+                        <Tooltip text="Reculer de 30 secondes" />
+                     </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ressources/audio_step_forward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </GridPane>
          </children>

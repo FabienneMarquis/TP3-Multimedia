@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mm1_tp3_base:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/mm1_tp3_base_jar</output-path>
+    <root id="archive" name="mm1_tp3_base.jar">
+      <element id="module-output" name="mm1_tp3_base" />
+    </root>
+  </artifact>
+</component>

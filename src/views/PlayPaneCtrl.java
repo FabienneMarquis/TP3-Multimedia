@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
@@ -18,6 +21,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -91,6 +95,13 @@ public class PlayPaneCtrl extends WindowApp {
     private Label lblFichier;
 
     @FXML
+    private Button btnretour;
+
+    @FXML
+    private Button btnNext;
+
+
+    @FXML
     private TextArea areaMetadata;
 
     private MediaPlayer mediaPlayer = null;
@@ -114,8 +125,7 @@ public class PlayPaneCtrl extends WindowApp {
     private String album;
     private String piece;
     private String pieceDefault;
-    private String titreSong="";
-
+    private String titreSong = "";
 
 
     /**
@@ -196,10 +206,10 @@ public class PlayPaneCtrl extends WindowApp {
             if (key.equals("album")) {
                 album = o.toString();
             } else if (key.equals("artist")) {
-                artist =o.toString();
+                artist = o.toString();
             } else if (key.equals("title")) {
-               piece = o.toString();
-            }else if (key.equals("year")) {
+                piece = o.toString();
+            } else if (key.equals("year")) {
                 annee = o.toString();
             }
         });
@@ -213,20 +223,20 @@ public class PlayPaneCtrl extends WindowApp {
         areaMetadata.positionCaret(0);
     }
 
-    private void changeTitreSong(){
-        if (artist!=null){
-            titreSong+=artist;
+    private void changeTitreSong() {
+        if (artist != null) {
+            titreSong += artist;
         }
-        if(annee!=null){
-            titreSong+=" - "+annee;
+        if (annee != null) {
+            titreSong += " - " + annee;
         }
-        if(album!=null){
-            titreSong+=" - "+album;
+        if (album != null) {
+            titreSong += " - " + album;
         }
-        if(piece!=null && !piece.equals(album)){
-            titreSong+=" - "+piece;
-        }else if(piece==null){
-            titreSong+=" - "+pieceDefault;
+        if (piece != null && !piece.equals(album)) {
+            titreSong += " - " + piece;
+        } else if (piece == null) {
+            titreSong += " - " + pieceDefault;
         }
         System.out.println(titreSong);
         if (titreSong == null) titreSong = "Inconnu";
@@ -317,10 +327,11 @@ public class PlayPaneCtrl extends WindowApp {
         config(null, null);
         initActions();
         bindNoSong();
-        album =null;
-        artist=null;
-        piece=null;
-        annee=null;
+
+        album = null;
+        artist = null;
+        piece = null;
+        annee = null;
     }
 
     private void initProgression() {
@@ -354,7 +365,8 @@ public class PlayPaneCtrl extends WindowApp {
         }
     }
 
-
+    
+    
     private void updateProgression() {
         int progres_ms = (int) mediaPlayer.getCurrentTime().toMillis();
         int total_ms = (int) mediaPlayer.getMedia().getDuration().toMillis();
@@ -396,10 +408,16 @@ public class PlayPaneCtrl extends WindowApp {
         );
     }
 
+
+
+
     @Override
     protected String getTitle() {
         return "TP3 - PlayPane";
     }
 
+    public Media getBindedMedia() {
+        return bindedMedia;
+    }
 }
 

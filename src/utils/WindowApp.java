@@ -44,7 +44,8 @@ public abstract class WindowApp extends Application {
 			return null;
 		}
 	}
-	
+
+
 	@Override
 	public void start(Stage primaryStage) {
 		WindowApp app = loadView();
