@@ -18,9 +18,9 @@ public abstract class WindowApp extends Application {
 	protected abstract String getFxml();
 	protected abstract String getTitle();
 	protected abstract Parent getRoot();
-	protected ContextMenu getTestMenu(){ 
+	protected ContextMenu getTestMenu(){
     	return new ContextMenu(
-    			new MenuItem("Do nothing"){{ setOnAction(event->{ System.out.println("Nothing to do!"); }); }}
+
     	);
 	}
 
@@ -56,6 +56,7 @@ public abstract class WindowApp extends Application {
     		app.getTestMenu().show(root, event.getScreenX(), event.getScreenY());
     		event.consume();
     	});
+
     	root.setStyle("-fx-padding: 20px");
 		Image icone = new Image("/ressources/catpaw.png");
 		primaryStage.getIcons().add(icone);

@@ -5,12 +5,14 @@ import utils.PathUtil;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.IOException;
 
 /**
  * Created by 1494778 on 2016-03-09.
  */
+@XmlRootElement
 public class Preference {
     public String songFile = null;
     public double stageWidth = -1;

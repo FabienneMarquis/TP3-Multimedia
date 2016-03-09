@@ -6,16 +6,14 @@ import java.net.URL;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -144,6 +142,32 @@ public class MusiquePaneCtrl extends WindowApp {
         initDragAndDrop();
         initSize();
         initBtnTimeline();
+        Platform.runLater(() -> {
+
+            getStage().setOnCloseRequest(meh -> stockerPreferences());
+            chargerPreferences();
+        });
+    }
+
+
+    @Override
+    protected ContextMenu getTestMenu() {
+        return new ContextMenu(
+                new MenuItem("sauver preference") {{
+                    setOnAction(event -> stockerPreferences());
+                }},
+                new MenuItem("Charger preference") {{
+                    setOnAction(event -> chargerPreferences());
+                }},
+                new MenuItem("Unbind Meida") {{
+                    setOnAction(event -> playPaneCtrl.bindNoSong());
+                }},
+                new MenuItem("Quitter") {{
+                    setOnAction(event -> {
+                    });
+                }}
+        );
+
     }
 
     private void initPlayPane() {
@@ -218,14 +242,18 @@ public class MusiquePaneCtrl extends WindowApp {
 
     }
 
-    private void stockerPreferences(){
-        Preference pref = new Preference(){{
+
+    private void chargerPreferences() {
+    }
+
+    private void stockerPreferences() {
+        Preference pref = new Preference() {{
             stageWidth = getStage().getWidth();
             stageHeight = getStage().getHeight();
             Media media = playPaneCtrl.getBindedMedia();
             songFile = media == null ? null : media.getSource();
         }};
-        pref.stocker();;
+        pref.stocker();
     }
 
     private double largeurIdealDuStage() {

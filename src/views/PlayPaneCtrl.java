@@ -104,6 +104,8 @@ public class PlayPaneCtrl extends WindowApp {
     @FXML
     private TextArea areaMetadata;
 
+    private Media bindedMedia;
+
     private MediaPlayer mediaPlayer = null;
 
     private Consumer<Status> onStatusChange;
@@ -135,7 +137,8 @@ public class PlayPaneCtrl extends WindowApp {
      */
     public void bindAndPlay(Media newMedia, String songDefault) {
         bindSong(newMedia, songDefault);
-        if (isBinded()) btnJouer.fire();
+        if (isBinded()){ btnJouer.fire();
+            bindedMedia=newMedia;}
     }
 
 
